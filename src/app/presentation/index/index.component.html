@@ -1,0 +1,73 @@
+<div>
+    <button type="button" (click)="addprocess()">AddProcess</button>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Process</th>
+            <th>Topic</th>
+            <th>sub-topic</th>
+            <th>weight</th>
+            <th>manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let process of processes">
+            <tr>
+                <td>
+                    <input [(ngModel)]="process.name">
+                </td>
+
+                <td ></td>
+
+                <td></td>
+                <td>
+                    <input [(ngModel)]="process.weight">
+                </td>
+                <td>
+                    <button type="button"(click)="AddTopic(process)">addTopic</button>
+                    <button type="button" (click)="deleteProcess(process)">delete</button>
+                </td>
+            </tr>
+            <ng-container *ngFor="let Topic of process.inverseHeader">
+                <tr>
+                    <td>
+                        
+                    </td>
+
+                    <td><input [(ngModel)]="Topic.name"></td>
+
+                    <td>
+                        
+                    </td>
+                    <td><input [(ngModel)]="Topic.weight"></td>
+                    <td>
+                        <button type="button"(click)="Addsubtopic(Topic)">Addsubtopic</button>
+                        <button type="button" (click)="deletetopic(process,Topic)">delete</button>
+                    </td>
+                </tr>
+                <ng-container *ngFor="let subtopic of Topic.inverseHeader">
+                <tr>
+                    <td>
+                        
+                    </td>
+
+                    <td></td>
+
+                    <td>
+                        <input [(ngModel)]="subtopic.name">
+                    </td>
+                    <td><input [(ngModel)]="subtopic.weight"></td>
+                    <td>
+                        
+                        <button type="button"(click)="deleteSubtopic(Topic, subtopic)">delete</button>
+                    </td>
+                </tr>
+            </ng-container>
+            </ng-container>
+        </ng-container>
+    </tbody>
+</table>
+<div>
+    <button type="submit" (click)="onSave()">save</button>
+</div>
